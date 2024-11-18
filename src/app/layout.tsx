@@ -4,6 +4,7 @@ import { Link } from "@/app/components/ui/Link";
 import DifficultyProvider from "@/app/context/DifficultyContext";
 import { nunito, roboto, robotoCondensed, vt323 } from "@/app/styles/fonts";
 import "@/app/styles/globals.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { ShoppingCart } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<GoogleTagManager gtmId="GTM-55J9KR83" />
 			<body
 				className={`bg-brand-dark-2 ${nunito.variable} ${vt323.variable} ${roboto.variable} ${robotoCondensed.variable}`}
 			>

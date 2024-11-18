@@ -1,4 +1,5 @@
 "use client";
+import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../ui/Button";
@@ -7,6 +8,15 @@ import styles from "./link.module.css";
 export default function MobileNavBar() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 	const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+	const handleGTMEvent = (eventName: string, label: string) => {
+		sendGTMEvent({
+			event: "link_click",
+			category: "Mobile NavBar",
+			action: eventName,
+			label,
+		});
+	};
 
 	function handleDrawerToggle() {
 		setIsDrawerOpen(!isDrawerOpen);
@@ -109,6 +119,7 @@ export default function MobileNavBar() {
 					variant={"shadow"}
 					className="px-10 py-5 text-xl xl:text-2x xl:text-2xl text-brand-purple font-roboto font-medium"
 					onClick={() => {
+						handleGTMEvent("Navigate", "Shop");
 						window.open("https://cyobot.myshopify.com", "_blank");
 					}}
 				>
