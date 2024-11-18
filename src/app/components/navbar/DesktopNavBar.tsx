@@ -1,11 +1,21 @@
 "use client";
 import styles from "@/app/components/navbar/link.module.css";
 import { Button } from "@/app/components/ui/Button";
+import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function DesktopNavBar() {
 	const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+	const handleGTMEvent = (eventName: string, label: string) => {
+		sendGTMEvent({
+			event: "link_click",
+			category: "Desktop NavBar",
+			action: eventName,
+			label,
+		});
+	};
 
 	return (
 		<div className="text-lg lg:text-xl xl:text-2xl font-roboto w-[95%] lg:flex hidden items-center justify-between mr-12">
@@ -68,6 +78,7 @@ export default function DesktopNavBar() {
 				variant={"shadow"}
 				className="md:text-xl xl:text-2xl text-brand-purple font-roboto font-medium"
 				onClick={() => {
+					handleGTMEvent("Navigate", "Shop");
 					window.open("https://cyobot.myshopify.com", "_blank");
 				}}
 			>
